@@ -2,12 +2,12 @@
 
 A minimal, operator-friendly way to set a Raspberry Pi’s **Ethernet** settings directly from **Bitfocus Companion** on a **StreamDeck XL**—no external apps, no HID hacking.
 
-* Enter IPv4, subnet mask (dotted or CIDR), gateway, and DNS1 from the deck.
-* Apply via Companion’s **Run shell path (local)**.
-* Uses **NetworkManager** (`nmcli`) under the hood.
-* One-tap **DHCP** fallback.
+* Enter IPv4, subnet mask (dotted **or** CIDR), gateway, and DNS1 on the deck
+* Apply via Companion’s **Run shell path (local)**
+* Uses **NetworkManager** (`nmcli`) under the hood
+* One-tap **DHCP** fallback
 
-> **Note:** This layout is designed for **StreamDeck XL** (and XL emulators). It will not fit smaller decks.
+> **Note:** This layout targets **StreamDeck XL** (and XL emulators). Smaller decks are **not supported** due to layout density.
 
 ---
 
@@ -15,7 +15,7 @@ A minimal, operator-friendly way to set a Raspberry Pi’s **Ethernet** settings
 
 ### On-deck input & validation
 
-Companion’s **Generic Data Entry** + expressions/feedbacks validate each octet and the full address before you hit **APPLY**. Visual states (green / yellow / red) guide the operator.
+Companion’s **Generic Data Entry** plus expressions/feedbacks validate each octet and the full address before you hit **APPLY**. Visual states (green / yellow / red) guide the operator.
 
 ### System-level apply
 
@@ -26,9 +26,11 @@ Two tiny bash scripts:
 
 ### Operator-friendly defaults
 
-* Subnet mask can be entered as `255.255.255.0` **or** `/24`.
-* `DNS2` is always set to `8.8.8.8`.
-* *(Optional, future switch)* If only IP is provided, derive sensible defaults (mask `/24`, gateway = first host, DNS1 = gateway).
+* Subnet mask may be entered as `255.255.255.0` **or** `/24` (numeric).
+* **DNS2** is always `8.8.8.8`.
+* If **mask/gateway/DNS1 are omitted**, the script derives sensible defaults:
+  mask = `/24`, gateway = first host in the subnet (or last if the IP is `.1`), DNS1 = gateway.
+* Inputs are **not normalized** inside octets; only **trailing garbage** (extra dots/digits at the end) is trimmed.
 
 ---
 
@@ -46,8 +48,8 @@ Two tiny bash scripts:
 ### 1) Install scripts
 
 ```bash
-# place scripts
-sudo cp scripts/nm-apply-ip.sh /usr/local/bin/
+# from repo root
+sudo cp scripts/nm-apply-ip.sh   /usr/local/bin/
 sudo cp scripts/nm-apply-dhcp.sh /usr/local/bin/
 sudo chmod 0755 /usr/local/bin/nm-apply-*.sh
 ```
@@ -61,13 +63,16 @@ Cmnd_Alias NM_OK = /usr/bin/nmcli, /usr/bin/nmcli *
 companion ALL=(root) NOPASSWD: NM_OK
 ```
 
-### 3) Import the page
+### 3) Import the page (recommended)
 
-In Companion UI: **Import → Page** → select the provided `.companionconfig` from `pages/`.
+In Companion UI: **Import → Page** → select a page export from `pages/`
+(e.g. `pages/ip_set_page_*_export.companionconfig`).
 
-### 4) Create custom variables
+> **Avoid Full Import** unless you intend to overwrite your entire Companion configuration. See **Backups** below.
 
-Add the variables listed in `docs/VARIABLES.md` (IP, mask/prefix, gateway, DNS1; plus boolean expressions for validity).
+### 4) Create variables (required)
+
+Companion cannot import “variables only”. Add the variables listed in **`docs/VARIABLES.md`** (IP, mask/prefix, gateway, DNS1; plus boolean expressions for validity).
 
 ### 5) Wire the APPLY / DHCP buttons
 
@@ -90,45 +95,61 @@ Each calls **Run shell path (local)**.
 /usr/local/bin/nm-apply-dhcp.sh eth0
 ```
 
-> Replace `eth0` if your interface name differs.
+> Replace `eth0` if your interface name differs (`end0`, `enx…`).
 
 ---
 
 ## Operator Flow
 
-1. Type **IP**, **MASK** (dotted or `/xx`), **GW**, **DNS1**.
-2. Visual feedback shows per-octet and whole-address validity.
-3. Press **APPLY** → scripts configure NetworkManager instantly.
-4. Need auto-assignment? Press **DHCP**.
+1. Type **IP**, **MASK** (dotted or `/xx`), **GW**, **DNS1** on the deck.
+2. Check the visual status (per-octet + whole-address).
+3. Press **APPLY** to configure; use **DHCP** for automatic addressing.
 
 ---
 
 ## Project Structure
 
 ```
-scripts/   # system scripts (bash)
-sudoers/   # sudoers snippet for nmcli
-pages/     # Companion .companionconfig exports (XL layout)
-docs/      # INSTALL / VARIABLES / notes
+docs/           # INSTALL / VARIABLES / Companion wiring notes
+full_backups/   # full Companion exports (Full Import will overwrite everything)
+pages/          # page-level exports for XL (preferred import target)
+scripts/        # system scripts (bash)
+sudoers/        # sudoers snippet for nmcli
+.gitattributes
+.gitignore
+LICENSE
+README.md
 ```
+
+---
+
+## Backups & Imports
+
+* **Preferred:** Import a **single Page** from `pages/` via *Import → Page*.
+* **Full Import:** Files in `full_backups/` are full configuration exports.
+  **Warning:** Full Import **replaces** devices, pages, variables, and triggers.
+  Always export a backup first (Companion **Settings → Backup**).
+
+See **`docs/COMPANION.md`** for details on imports, feedback wiring, and layout notes.
 
 ---
 
 ## Design Notes
 
-* Pure Companion: **no** separate HID app or service.
+* Pure Companion: **no** separate HID app or resident service.
 * Local execution: **Run shell path (local)** avoids SSH/HTTP hops.
-* Safe by default: validation in Companion; the script double-checks and exits cleanly on invalid inputs.
-* Second DNS is always `8.8.8.8` (operator sets only DNS1).
+* Safe by default: Companion validates; scripts re-check and fail fast on invalid input.
+* DNS2 is always `8.8.8.8` (operator sets only DNS1).
+* Comments and docs are kept **in English** (project standard).
 
 ---
 
 ## Roadmap
 
-* Optional “gate” page on startup (countdown + Accept/Change).
-* “IP-only” convenience mode (derive mask/GW/DNS1 automatically).
-* Multi-interface support (`eth0`, `end0`, etc.) via on-deck selector.
-* Status poll (read-back) and display of effective values.
+* Startup “gate” screen (countdown + Accept/Change)
+* IP-only convenience mode toggle (defaults already supported in scripts)
+* Multi-interface selector on deck
+* Status read-back (show effective values on deck)
 
 ---
 
@@ -141,4 +162,4 @@ MIT — see `LICENSE`.
 ## Support / Contributions
 
 Issues and PRs welcome.
-When exporting from Companion, prefer **pages** (not full configs) to avoid clobbering existing setups.
+When exporting from Companion, prefer **page exports** (not full configs) to avoid clobbering existing setups.
