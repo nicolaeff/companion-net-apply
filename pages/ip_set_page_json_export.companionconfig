@@ -1,0 +1,1769 @@
+{
+	"version": 9,
+	"type": "page",
+	"companionBuild": "4.1.4+8492-stable-4cb4314544",
+	"page": {
+		"id": "7eY22SCgy8yAoCQ5Sd_XQ",
+		"name": "IP Setup PAGE",
+		"controls": {
+			"0": {
+				"0": {
+					"type": "button",
+					"style": {
+						"text": "1.ENTER\\nADDR➡️",
+						"textExpression": false,
+						"size": "14",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 0,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "qajWv5vCBNFQqudiiOa3A",
+							"definitionId": "blinkVariable",
+							"connectionId": "RYtf1qt1ufXF4Z-fzjyfw",
+							"options": {
+								"op": "eq",
+								"value": "false",
+								"variable": "$(expression:raw_ip_valid)"
+							},
+							"upgradeIndex": 0,
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 6684672
+							},
+							"isInverted": false
+						},
+						{
+							"id": "N4Hzlm1SdJisQ3xb1dASn",
+							"definitionId": "variable_value",
+							"connectionId": "internal",
+							"options": {
+								"variable": "expression:raw_ip_valid",
+								"op": "eq",
+								"value": "true"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"1": {
+					"type": "button",
+					"style": {
+						"text": "$(expression:oct1)",
+						"textExpression": false,
+						"size": "30",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 0,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "g04e95EWwShXelT2nFAqS",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) >= 2\n&& strlen(a[0]) >= 1 && strlen(a[0]) <= 3\n&& isNumber(+a[0]) && +a[0] >= 0 && +a[0] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						},
+						{
+							"id": "Nz3B3qcRVpjGal-c1m5iJ",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) == 1\n&& strlen(a[0]) >= 1 && strlen(a[0]) <= 3\n&& isNumber(+a[0]) && +a[0] >= 0 && +a[0] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 10066176
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"2": {
+					"type": "button",
+					"style": {
+						"text": "$(expression:oct2)",
+						"textExpression": false,
+						"size": "30",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 0,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "lJWPNJ4JbX9wfkBZiSa5L",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) >= 3\n&& strlen(a[1]) >= 1 && strlen(a[1]) <= 3\n&& isNumber(+a[1]) && +a[1] >= 0 && +a[1] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						},
+						{
+							"id": "fDe-Lb_C1QxI-TVfl505M",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) == 2\n&& strlen(a[1]) >= 1 && strlen(a[1]) <= 3\n&& isNumber(+a[1]) && +a[1] >= 0 && +a[1] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 10066176
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": [
+						{
+							"id": "pJr1eMzH6MfYAZvs0h0Fz",
+							"definitionId": "expression_value",
+							"connectionId": "internal",
+							"options": {
+								"expression": "a = split($(dataentry:entry_cursor), \".\");\nlength(a) >= 2 ? concat(a[0], \".\") : (length(a) >= 1 ? a[0] : \"\")"
+							},
+							"type": "feedback",
+							"style": {},
+							"isInverted": false,
+							"variableName": "1oct",
+							"children": {}
+						}
+					]
+				},
+				"3": {
+					"type": "button",
+					"style": {
+						"text": "$(expression:oct3)",
+						"textExpression": false,
+						"size": "30",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 0,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "WDHsKN0vcEk89lx1AbcpZ",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) >= 4\n&& strlen(a[2]) >= 1 && strlen(a[2]) <= 3\n&& isNumber(+a[2]) && +a[2] >= 0 && +a[2] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						},
+						{
+							"id": "Ty3xsYm8PkjLYo_bMO56p",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) == 3\n&& strlen(a[2]) >= 1 && strlen(a[2]) <= 3\n&& isNumber(+a[2]) && +a[2] >= 0 && +a[2] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 10066176
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": [
+						{
+							"id": "omWV-vq3Do_5zT_Ts6I0g",
+							"definitionId": "expression_value",
+							"connectionId": "internal",
+							"options": {
+								"expression": "a = split($(dataentry:entry_cursor), \".\");\nlength(a) >= 2 ? concat(a[0], \".\") : (length(a) >= 1 ? a[0] : \"\")"
+							},
+							"type": "feedback",
+							"style": {},
+							"isInverted": false,
+							"variableName": "1oct",
+							"children": {}
+						}
+					]
+				},
+				"4": {
+					"type": "button",
+					"style": {
+						"text": "$(expression:oct4)",
+						"textExpression": false,
+						"size": "30",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 0,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "moEMYGlWmTPbOJKV86j8K",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) == 4\n&& strlen(a[3]) >= 1 && strlen(a[3]) <= 3\n&& isNumber(+a[3]) && +a[3] >= 0 && +a[3] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						},
+						{
+							"id": "RBcHGqUdizpPzSyhbxG0d",
+							"definitionId": "check_expression",
+							"connectionId": "internal",
+							"options": {
+								"expression": "s = trim($(dataentry:entry_raw));\na = split(s, \".\");\nlength(a) == 5\n&& strlen(a[4]) == 0\n&& strlen(a[3]) >= 1 && strlen(a[3]) <= 3\n&& isNumber(+a[3]) && +a[3] >= 0 && +a[3] <= 255\n"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 10027008
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": [
+						{
+							"id": "FzuDtW6jroMrWd8f8PLUO",
+							"definitionId": "expression_value",
+							"connectionId": "internal",
+							"options": {
+								"expression": "a = split($(dataentry:entry_cursor), \".\");\nlength(a) >= 2 ? concat(a[0], \".\") : (length(a) >= 1 ? a[0] : \"\")"
+							},
+							"type": "feedback",
+							"style": {},
+							"isInverted": false,
+							"variableName": "1oct",
+							"children": {}
+						}
+					]
+				},
+				"5": {
+					"type": "button",
+					"style": {
+						"text": "1",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "HAETBwG1qp9jMa3pz-yV6",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "1",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"6": {
+					"type": "button",
+					"style": {
+						"text": "2",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "LXHU-TTgFWPvRbgh3egvO",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "2",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"7": {
+					"type": "button",
+					"style": {
+						"text": "3",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "0CAjOWZfF9m9c4SG3zI15",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "3",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				}
+			},
+			"1": {
+				"0": {
+					"type": "button",
+					"style": {
+						"text": "➡️",
+						"textExpression": false,
+						"size": "auto",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 197379,
+						"bgcolor": 0,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "jti-2HMZEhtIL3COC9G4L",
+							"definitionId": "blinkVariable",
+							"connectionId": "RYtf1qt1ufXF4Z-fzjyfw",
+							"options": {
+								"op": "eq",
+								"value": "true",
+								"variable": "$(expression:raw_ip_valid)"
+							},
+							"upgradeIndex": 0,
+							"type": "feedback",
+							"style": {
+								"color": 52224,
+								"bgcolor": 0
+							},
+							"isInverted": false
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"1": {
+					"type": "button",
+					"style": {
+						"text": "Set IP: $(internal:custom_ip_addr)",
+						"textExpression": false,
+						"size": "auto",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 3342336,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "-HMvEwTfqSjOVz0TjDgyE",
+							"definitionId": "variable_value",
+							"connectionId": "internal",
+							"options": {
+								"variable": "expression:custom_ip_valid",
+								"op": "eq",
+								"value": "true"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"id": "012e7w3kLbYDHt6QL3hF6",
+										"definitionId": "custom_variable_store_variable",
+										"connectionId": "internal",
+										"options": {
+											"name": "ip_addr",
+											"variable": "dataentry:entry_raw"
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "yri0xMIEX7Xd_1Xxdt86H",
+										"definitionId": "setData",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"options": {
+											"data": ""
+										},
+										"upgradeIndex": -1,
+										"type": "action"
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"2": {
+					"type": "button",
+					"style": {
+						"text": "Set GW: $(internal:custom_gateway)",
+						"textExpression": false,
+						"size": "auto",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 3342336,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "zLJZtW2dc9mwfcKncZjd1",
+							"definitionId": "variable_value",
+							"connectionId": "internal",
+							"options": {
+								"variable": "expression:custom_gateway_valid",
+								"op": "eq",
+								"value": "true"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"id": "fjeep9ClKj2FNtJnJwGSk",
+										"definitionId": "custom_variable_store_variable",
+										"connectionId": "internal",
+										"options": {
+											"name": "gateway",
+											"variable": "dataentry:entry_raw"
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "tiV7RVzCheeVTxGtJBOjA",
+										"definitionId": "setData",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"options": {
+											"data": ""
+										},
+										"upgradeIndex": -1,
+										"type": "action"
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"3": {
+					"type": "button",
+					"style": {
+						"text": "Set DNS: $(custom:dns1)",
+						"textExpression": false,
+						"size": "auto",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 3342336,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "5NIYtk6qAD5ftXmekvapL",
+							"definitionId": "variable_value",
+							"connectionId": "internal",
+							"options": {
+								"variable": "expression:custom_dns1_valid",
+								"op": "eq",
+								"value": "true"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"id": "EwPPNLhKZ3mAFveDdDcBd",
+										"definitionId": "custom_variable_store_variable",
+										"connectionId": "internal",
+										"options": {
+											"name": "dns1",
+											"variable": "dataentry:entry_raw"
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "vRPX4PSNtUCR2yKKyxU01",
+										"definitionId": "setData",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"options": {
+											"data": ""
+										},
+										"upgradeIndex": -1,
+										"type": "action"
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"4": {
+					"type": "button",
+					"style": {
+						"text": "Set mask: $(custom:prefix)",
+						"textExpression": false,
+						"size": "auto",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 3342336,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "wy1fUDldh5cmawQa9MvaE",
+							"definitionId": "variable_value",
+							"connectionId": "internal",
+							"options": {
+								"variable": "expression:custom_prefix_valid",
+								"op": "eq",
+								"value": "true"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 26112
+							},
+							"isInverted": false,
+							"children": {}
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"id": "F6DVLXaXPIwudmP45Nglg",
+										"definitionId": "custom_variable_store_variable",
+										"connectionId": "internal",
+										"options": {
+											"name": "prefix",
+											"variable": "dataentry:entry_raw"
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "7AnRUQUFZMidN0PJTucJC",
+										"definitionId": "setData",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"options": {
+											"data": ""
+										},
+										"upgradeIndex": -1,
+										"type": "action"
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"5": {
+					"type": "button",
+					"style": {
+						"text": "4",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "IMXrsuwchmKs001wk5EIN",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "4",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"6": {
+					"type": "button",
+					"style": {
+						"text": "5",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "tRm91q_J2LOi2UUnDQNJn",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "5",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"7": {
+					"type": "button",
+					"style": {
+						"text": "6",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "lNEwIilHANx6c0FGTNCvr",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "6",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				}
+			},
+			"2": {
+				"0": {
+					"type": "button",
+					"style": {
+						"text": "DHCP\\nCLIENT\\nMODE",
+						"textExpression": false,
+						"size": "14",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 3342387,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"id": "Ht_yG-dBSWW4esKuAheg1",
+										"definitionId": "exec",
+										"connectionId": "internal",
+										"options": {
+											"path": "/usr/local/bin/nm-apply-dhcp.sh eth0",
+											"timeout": 10000
+										},
+										"type": "action",
+										"children": {}
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"1": {
+					"type": "pagenum"
+				},
+				"2": {
+					"type": "pageup"
+				},
+				"3": {
+					"type": "button",
+					"style": {
+						"text": "🠜",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "-aHlCFerxs029QqiGnTy2",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "cursorPosition",
+										"options": {
+											"operation": "inc",
+											"amount": -1
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"4": {
+					"type": "button",
+					"style": {
+						"text": "🠞",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "3vtFKO9uusxIhZXXx1g0Y",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "cursorPosition",
+										"options": {
+											"operation": "inc",
+											"amount": 1
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"5": {
+					"type": "button",
+					"style": {
+						"text": "7",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "HmqjgxfjT5zMO7h1NmiNH",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "7",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"6": {
+					"type": "button",
+					"style": {
+						"text": "8",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "fN2ppqhh_3FI4jnE9UDoI",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "8",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"7": {
+					"type": "button",
+					"style": {
+						"text": "9",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "aedVLxwwsx7rMV7YGN11w",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "9",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				}
+			},
+			"3": {
+				"0": {
+					"type": "button",
+					"style": {
+						"text": "IP NOW\\n$(internal:eth0)",
+						"textExpression": false,
+						"size": "14",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 3342387,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"1": {
+					"type": "button",
+					"style": {
+						"text": "Hostname:\\n$(internal:hostname)",
+						"textExpression": false,
+						"size": "14",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": 16777215,
+						"bgcolor": 3342387,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"2": {
+					"type": "pagedown"
+				},
+				"3": {
+					"type": "button",
+					"style": {
+						"text": "⌧ Clear",
+						"textExpression": false,
+						"size": "24",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 6684672,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"1": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "bgItN6qzZpbxbNOwy-Tar",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "setData",
+										"options": {
+											"data": ""
+										},
+										"upgradeIndex": -1
+									},
+									{
+										"type": "action",
+										"id": "F50YtZWpXXX0Mx_oFnSTr",
+										"connectionId": "internal",
+										"definitionId": "wait",
+										"options": {
+											"time": 10
+										},
+										"children": {}
+									},
+									{
+										"type": "action",
+										"id": "tJVqcqr1JY_8vqugSxfhq",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "cancelTimeout",
+										"options": {},
+										"upgradeIndex": -1
+									},
+									{
+										"id": "FlNaGrLhw-LOs_kWGd7tC",
+										"definitionId": "custom_variable_set_value",
+										"connectionId": "internal",
+										"options": {
+											"name": "ip_addr",
+											"value": ""
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "JJqdVuvL8EimAdRMmztW_",
+										"definitionId": "custom_variable_set_value",
+										"connectionId": "internal",
+										"options": {
+											"name": "prefix",
+											"value": ""
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "xArbj39kD0O8wh0GQESd4",
+										"definitionId": "custom_variable_set_value",
+										"connectionId": "internal",
+										"options": {
+											"name": "gateway",
+											"value": ""
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "fvQbTz7oj_k9rixUmPoYy",
+										"definitionId": "custom_variable_set_value",
+										"connectionId": "internal",
+										"options": {
+											"name": "dns1",
+											"value": ""
+										},
+										"type": "action",
+										"children": {}
+									},
+									{
+										"id": "gH4gdycBs1idgq9orx9X5",
+										"definitionId": "custom_variable_set_value",
+										"connectionId": "internal",
+										"options": {
+											"name": "dns2",
+											"value": ""
+										},
+										"type": "action",
+										"children": {}
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"4": {
+					"type": "button",
+					"style": {
+						"text": "⏎\\nAPLY",
+						"textExpression": false,
+						"size": "24",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 0,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "bool($(expression:all_valid))",
+						"rotaryActions": false
+					},
+					"feedbacks": [
+						{
+							"id": "LARHPNtBkmybETtbGoMcx",
+							"definitionId": "variable_value",
+							"connectionId": "internal",
+							"options": {
+								"variable": "expression:all_valid",
+								"op": "eq",
+								"value": "false"
+							},
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 6684672
+							},
+							"isInverted": false,
+							"children": {}
+						},
+						{
+							"id": "6IP1gCBkrmBJQuH-JHojP",
+							"definitionId": "blinkVariable",
+							"connectionId": "RYtf1qt1ufXF4Z-fzjyfw",
+							"options": {
+								"op": "eq",
+								"value": "true",
+								"variable": "$(expression:all_valid)"
+							},
+							"upgradeIndex": 0,
+							"type": "feedback",
+							"style": {
+								"color": 16777215,
+								"bgcolor": 52224
+							},
+							"isInverted": false
+						}
+					],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"id": "3Mpie2X7pjl_0xFx5rZQ2",
+										"definitionId": "exec",
+										"connectionId": "internal",
+										"options": {
+											"path": "/usr/local/bin/nm-apply-ip.sh $(internal:custom_ip_addr) $(internal:custom_prefix) $(internal:custom_gateway) $(internal:custom_dns1) eth0",
+											"timeout": 10000
+										},
+										"type": "action",
+										"children": {}
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"5": {
+					"type": "button",
+					"style": {
+						"text": ".",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "LA1BxFdXiapo0z4ypdv9v",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": ".",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"6": {
+					"type": "button",
+					"style": {
+						"text": "0",
+						"textExpression": false,
+						"size": "44",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 4737096,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "BayfwJbsJB983rypJWrSy",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "insertData",
+										"options": {
+											"data0": "0",
+											"data1type": false,
+											"data1": "",
+											"data2type": false,
+											"data2": "",
+											"data3type": false,
+											"data3": "",
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				},
+				"7": {
+					"type": "button",
+					"style": {
+						"text": "⌫ Bksp",
+						"textExpression": false,
+						"size": "24",
+						"png64": null,
+						"alignment": "center:center",
+						"pngalignment": "center:center",
+						"color": "#fff",
+						"bgcolor": 6684672,
+						"show_topbar": false
+					},
+					"options": {
+						"stepProgression": "auto",
+						"stepExpression": "",
+						"rotaryActions": false
+					},
+					"feedbacks": [],
+					"steps": {
+						"0": {
+							"action_sets": {
+								"down": [
+									{
+										"type": "action",
+										"id": "TFXNyWLukNx-sH-3Oox9X",
+										"connectionId": "GGGIjrFA3DKg7ahS8o41S",
+										"definitionId": "deleteData",
+										"options": {
+											"amount": -1,
+											"position": "cursor"
+										},
+										"upgradeIndex": -1
+									}
+								],
+								"up": []
+							},
+							"options": {
+								"runWhileHeld": []
+							}
+						}
+					},
+					"localVariables": []
+				}
+			}
+		},
+		"gridSize": {
+			"minColumn": 0,
+			"maxColumn": 7,
+			"minRow": 0,
+			"maxRow": 3
+		}
+	},
+	"instances": {
+		"RYtf1qt1ufXF4Z-fzjyfw": {
+			"instance_type": "generic-blink",
+			"moduleVersionId": "1.2.0",
+			"updatePolicy": "stable",
+			"sortOrder": 3,
+			"label": "generic-blink",
+			"isFirstInit": false,
+			"config": {
+				"specifyCustomOnOff": false,
+				"onTime": 1000,
+				"offTime": 500,
+				"rate": 500
+			},
+			"secrets": {},
+			"lastUpgradeIndex": 0,
+			"enabled": true
+		},
+		"GGGIjrFA3DKg7ahS8o41S": {
+			"instance_type": "generic-dataentry",
+			"moduleVersionId": "1.0.2",
+			"updatePolicy": "stable",
+			"sortOrder": 2,
+			"label": "dataentry",
+			"isFirstInit": false,
+			"config": {
+				"autolengthraw": false,
+				"enterlengthraw": 4,
+				"autolengthformatted": false,
+				"enterlengthformatted": 4,
+				"autoregex": false,
+				"enterregex": "/.*/i",
+				"autotime": false,
+				"timeout": 2.5,
+				"criterialogic": "or",
+				"copydata": "raw",
+				"after": "clear",
+				"formattype": "none",
+				"formatecma": "*",
+				"formatprintf": "%s",
+				"formatregex": "/(.)/$1/g",
+				"maxlength": 1024,
+				"cursor": "|"
+			},
+			"secrets": {},
+			"lastUpgradeIndex": -1,
+			"enabled": true
+		}
+	},
+	"connectionCollections": [],
+	"oldPageNumber": 2
+}
