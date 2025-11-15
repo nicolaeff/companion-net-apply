@@ -1,0 +1,360 @@
+version: 9
+type: full
+companionBuild: 4.1.4+8492-stable-4cb4314544
+custom_variables:
+  ip_addr:
+    description: A custom variable
+    defaultValue: ""
+    persistCurrentValue: false
+    sortOrder: 0
+  prefix:
+    description: A custom variable
+    defaultValue: ""
+    persistCurrentValue: false
+    sortOrder: 1
+  gateway:
+    description: A custom variable
+    defaultValue: ""
+    persistCurrentValue: false
+    sortOrder: 2
+  dns1:
+    description: A custom variable
+    defaultValue: ""
+    persistCurrentValue: false
+    sortOrder: 3
+  dns2:
+    description: A custom variable
+    defaultValue: ""
+    persistCurrentValue: false
+    sortOrder: 4
+customVariablesCollections: []
+expressionVariables:
+  9bQNAlmdVDfBXlFcbFblt:
+    type: expression-variable
+    options:
+      variableName: oct1
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: i3l5RkSWLKuXK5TNxrgpe
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: |-
+          a = split($(dataentry:entry_cursor), ".");
+          length(a) >= 2 ? concat(a[0], ".") : (length(a) >= 1 ? a[0] : "")
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  nDxBmq8JzizTKnPgw4TSY:
+    type: expression-variable
+    options:
+      variableName: oct2
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: lOrV6z6cgBgFPWHxZvmC7
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: |
+          a = split($(dataentry:entry_cursor), ".");
+          length(a) >= 3 ? concat(a[1], ".") : (length(a) >= 2 ? a[1] : "")
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  Yn1C358llgFHWmQWwW9FY:
+    type: expression-variable
+    options:
+      variableName: oct3
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: 51RI2V3Bq88ddxVYsWfqJ
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: |
+          a = split($(dataentry:entry_cursor), ".");
+          length(a) >= 4 ? concat(a[2], ".") : (length(a) >= 3 ? a[2] : "")
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  OO94t6aRJV25E38XEXT14:
+    type: expression-variable
+    options:
+      variableName: oct4
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: jcSMVLysqgV4FLs9w_QGX
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: |
+          a = split($(dataentry:entry_cursor), ".");
+          length(a) >= 4 ? a[3] : ""
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  5adknoKPQMmnTz1krrjP3:
+    type: expression-variable
+    options:
+      variableName: test
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: RePeaOqtL_H-hPTL8Z0fZ
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: |
+          jsonstringify(split(trim($(dataentry:entry_cursor)), "."))
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  qIyl6TLE1ED3SrDl6_mDN:
+    type: expression-variable
+    options:
+      variableName: custom_dns2_valid
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: eU687XptvCOHIPzmkLGcp
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: >
+          s = trim($(custom:dns2));
+
+          a = split(s, ".");
+
+          length(a) == 4
+
+          && strlen(a[0]) >= 1 && strlen(a[0]) <= 3 && isNumber(+trim(a[0])) &&
+          +trim(a[0]) >= 0 && +trim(a[0]) <= 255
+
+          && strlen(a[1]) >= 1 && strlen(a[1]) <= 3 && isNumber(+trim(a[1])) &&
+          +trim(a[1]) >= 0 && +trim(a[1]) <= 255
+
+          && strlen(a[2]) >= 1 && strlen(a[2]) <= 3 && isNumber(+trim(a[2])) &&
+          +trim(a[2]) >= 0 && +trim(a[2]) <= 255
+
+          && strlen(a[3]) >= 1 && strlen(a[3]) <= 3 && isNumber(+trim(a[3])) &&
+          +trim(a[3]) >= 0 && +trim(a[3]) <= 255
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  RTx6T2CQ5Lsb_98dkLD1_:
+    type: expression-variable
+    options:
+      variableName: raw_ip_valid
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: lEDiFIP4XtkT97tESb4iQ
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: >
+          s = trim($(dataentry:entry_raw));
+
+          a = split(s, ".");
+
+          length(a) == 4
+
+          && strlen(a[0]) >= 1 && strlen(a[0]) <= 3 && isNumber(+trim(a[0])) &&
+          +trim(a[0]) >= 0 && +trim(a[0]) <= 255
+
+          && strlen(a[1]) >= 1 && strlen(a[1]) <= 3 && isNumber(+trim(a[1])) &&
+          +trim(a[1]) >= 0 && +trim(a[1]) <= 255
+
+          && strlen(a[2]) >= 1 && strlen(a[2]) <= 3 && isNumber(+trim(a[2])) &&
+          +trim(a[2]) >= 0 && +trim(a[2]) <= 255
+
+          && strlen(a[3]) >= 1 && strlen(a[3]) <= 3 && isNumber(+trim(a[3])) &&
+          +trim(a[3]) >= 0 && +trim(a[3]) <= 255
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  5WQG6_LCZ6fG_OlWcoTBM:
+    type: expression-variable
+    options:
+      variableName: custom_ip_valid
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: zXkJOmHFtmuEf1T2U_4n6
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: >
+          s = trim($(custom:ip_addr));
+
+          a = split(s, ".");
+
+          length(a) == 4
+
+          && strlen(a[0]) >= 1 && strlen(a[0]) <= 3 && isNumber(+trim(a[0])) &&
+          +trim(a[0]) >= 0 && +trim(a[0]) <= 255
+
+          && strlen(a[1]) >= 1 && strlen(a[1]) <= 3 && isNumber(+trim(a[1])) &&
+          +trim(a[1]) >= 0 && +trim(a[1]) <= 255
+
+          && strlen(a[2]) >= 1 && strlen(a[2]) <= 3 && isNumber(+trim(a[2])) &&
+          +trim(a[2]) >= 0 && +trim(a[2]) <= 255
+
+          && strlen(a[3]) >= 1 && strlen(a[3]) <= 3 && isNumber(+trim(a[3])) &&
+          +trim(a[3]) >= 0 && +trim(a[3]) <= 255
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  Fj8CczjtFDWdVYGhCkDJJ:
+    type: expression-variable
+    options:
+      variableName: custom_prefix_valid
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: iEo_iVkPa-uRuhZBdwjmB
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: >
+          s = trim($(custom:prefix));
+
+          a = split(s, ".");
+
+          length(a) == 4
+
+          && strlen(a[0]) >= 1 && strlen(a[0]) <= 3 && isNumber(+trim(a[0])) &&
+          +trim(a[0]) >= 0 && +trim(a[0]) <= 255
+
+          && strlen(a[1]) >= 1 && strlen(a[1]) <= 3 && isNumber(+trim(a[1])) &&
+          +trim(a[1]) >= 0 && +trim(a[1]) <= 255
+
+          && strlen(a[2]) >= 1 && strlen(a[2]) <= 3 && isNumber(+trim(a[2])) &&
+          +trim(a[2]) >= 0 && +trim(a[2]) <= 255
+
+          && strlen(a[3]) >= 1 && strlen(a[3]) <= 3 && isNumber(+trim(a[3])) &&
+          +trim(a[3]) >= 0 && +trim(a[3]) <= 255
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  aKFjT_N_ZR9acBaE1ny3w:
+    type: expression-variable
+    options:
+      variableName: custom_dns1_valid
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: 20FZI5N42TveJTmGP85Sf
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: >
+          s = trim($(custom:dns1));
+
+          a = split(s, ".");
+
+          length(a) == 4
+
+          && strlen(a[0]) >= 1 && strlen(a[0]) <= 3 && isNumber(+trim(a[0])) &&
+          +trim(a[0]) >= 0 && +trim(a[0]) <= 255
+
+          && strlen(a[1]) >= 1 && strlen(a[1]) <= 3 && isNumber(+trim(a[1])) &&
+          +trim(a[1]) >= 0 && +trim(a[1]) <= 255
+
+          && strlen(a[2]) >= 1 && strlen(a[2]) <= 3 && isNumber(+trim(a[2])) &&
+          +trim(a[2]) >= 0 && +trim(a[2]) <= 255
+
+          && strlen(a[3]) >= 1 && strlen(a[3]) <= 3 && isNumber(+trim(a[3])) &&
+          +trim(a[3]) >= 0 && +trim(a[3]) <= 255
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  ZXFHCrQsvxX2R3dTEOwE3:
+    type: expression-variable
+    options:
+      variableName: custom_gateway_valid
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: BJK5LQNAY3RDlQ3P-Ja7C
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: >
+          s = trim($(custom:gateway));
+
+          a = split(s, ".");
+
+          length(a) == 4
+
+          && strlen(a[0]) >= 1 && strlen(a[0]) <= 3 && isNumber(+trim(a[0])) &&
+          +trim(a[0]) >= 0 && +trim(a[0]) <= 255
+
+          && strlen(a[1]) >= 1 && strlen(a[1]) <= 3 && isNumber(+trim(a[1])) &&
+          +trim(a[1]) >= 0 && +trim(a[1]) <= 255
+
+          && strlen(a[2]) >= 1 && strlen(a[2]) <= 3 && isNumber(+trim(a[2])) &&
+          +trim(a[2]) >= 0 && +trim(a[2]) <= 255
+
+          && strlen(a[3]) >= 1 && strlen(a[3]) <= 3 && isNumber(+trim(a[3])) &&
+          +trim(a[3]) >= 0 && +trim(a[3]) <= 255
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+  X6650RZWMfiZuKSA8pb3j:
+    type: expression-variable
+    options:
+      variableName: all_valid
+      description: An expression variable
+      sortOrder: 0
+    entity:
+      id: y-5B0Q-eSTr6zTIXvPDMf
+      definitionId: expression_value
+      connectionId: internal
+      options:
+        expression: |
+          bool($(expression:custom_ip_valid))
+          && bool($(expression:custom_prefix_valid))
+          && bool($(expression:custom_dns1_valid))
+          && bool($(expression:custom_gateway_valid))
+      type: feedback
+      style: {}
+      isInverted: false
+      children: {}
+    localVariables: []
+expressionVariablesCollections: []
+instances:
+  GGGIjrFA3DKg7ahS8o41S:
+    instance_type: generic-dataentry
+    label: dataentry
+    lastUpgradeIndex: -1
+    moduleVersionId: 1.0.2
+    updatePolicy: stable
+    sortOrder: 2
+connectionCollections: []
