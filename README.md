@@ -2,7 +2,7 @@
 
 A minimal, operator-friendly way to set a Raspberry Pi’s **Ethernet** settings directly from **Bitfocus Companion** on a **StreamDeck XL**—no external apps, no HID hacking.
 
-* Enter IPv4, subnet mask (dotted **or** CIDR), gateway, and DNS1 on the deck
+* Enter IPv4, subnet mask (dotted **or** numeric CIDR), gateway, and DNS1 on the deck
 * Apply via Companion’s **Run shell path (local)**
 * Uses **NetworkManager** (`nmcli`) under the hood
 * One-tap **DHCP** fallback
@@ -26,7 +26,7 @@ Two tiny bash scripts:
 
 ### Operator-friendly defaults
 
-* Subnet mask may be entered as `255.255.255.0` **or** `/24` (numeric).
+* Subnet mask may be entered as **`255.255.255.0`** or **`24`** (CIDR **number**, no slash).
 * **DNS2** is always `8.8.8.8`.
 * If **mask/gateway/DNS1 are omitted**, the script derives sensible defaults:
   mask = `/24`, gateway = first host in the subnet (or last if the IP is `.1`), DNS1 = gateway.
@@ -41,9 +41,32 @@ Two tiny bash scripts:
 * **StreamDeck XL** or an **XL emulator**
 * Ability to grant `sudo` rights for `nmcli` to the Companion service user
 
+> **NetworkManager notes**
+>
+> * Ensure the NIC is managed by NetworkManager:
+>
+>   ```bash
+>   nmcli device status
+>   ```
+>
+>   The target interface (e.g. `eth0`) should show `managed` and an NM state.
+> * If another DHCP client/service manages the interface (e.g. `dhcpcd`, legacy tools), disable it and enable NM:
+>
+>   ```bash
+>   sudo systemctl disable --now dhcpcd || true
+>   sudo systemctl enable --now NetworkManager
+>   ```
+> * Install if missing:
+>
+>   ```bash
+>   sudo apt-get update && sudo apt-get install -y network-manager
+>   ```
+
 ---
 
 ## Quick Start
+
+See also: [`docs/INSTALL.md`](docs/INSTALL.md) • [`docs/VARIABLES.md`](docs/VARIABLES.md) • [`docs/COMPANION.md`](docs/COMPANION.md)
 
 ### 1) Install scripts
 
@@ -68,7 +91,7 @@ companion ALL=(root) NOPASSWD: NM_OK
 In Companion UI: **Import → Page** → select a page export from `pages/`
 (e.g. `pages/ip_set_page_*_export.companionconfig`).
 
-> **Avoid Full Import** unless you intend to overwrite your entire Companion configuration. See **Backups** below.
+> **Avoid Full Import** unless you intend to overwrite your entire Companion configuration. See **Backups & Imports** below.
 
 ### 4) Create variables (required)
 
@@ -101,7 +124,7 @@ Each calls **Run shell path (local)**.
 
 ## Operator Flow
 
-1. Type **IP**, **MASK** (dotted or `/xx`), **GW**, **DNS1** on the deck.
+1. Type **IP**, **MASK** (dotted or CIDR number, e.g. `24`), **GW**, **DNS1** on the deck.
 2. Check the visual status (per-octet + whole-address).
 3. Press **APPLY** to configure; use **DHCP** for automatic addressing.
 
@@ -130,7 +153,7 @@ README.md
   **Warning:** Full Import **replaces** devices, pages, variables, and triggers.
   Always export a backup first (Companion **Settings → Backup**).
 
-See **`docs/COMPANION.md`** for details on imports, feedback wiring, and layout notes.
+For details on imports, feedback wiring, and layout notes, see **`docs/COMPANION.md`**.
 
 ---
 
@@ -163,3 +186,5 @@ MIT — see `LICENSE`.
 
 Issues and PRs welcome.
 When exporting from Companion, prefer **page exports** (not full configs) to avoid clobbering existing setups.
+Please keep code comments and docs **in English**.
+
